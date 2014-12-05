@@ -1,14 +1,13 @@
-function outputIm = SeamlessClone(destIm,sourceIm,imMask)
+function outputIm = SeamlessClone(destIm,sourceIm,imMask,offsetY,offsetX)
 %SEAMLESSCLONE Blends SOURCEIM into DESTIM using IMMASK
 %
 %   Parameters
-%   DESTIM: m by n pixel image
-%   SOURCEIM: m by n pixel image aligned to fit onto DESTIM
+%   DESTIM: background image
+%   SOURCEIM: m by n image to blend into DESTIM
 %   IMMASK: m by n matrix of logicals to determine which pixels of SOURCEIM
 %       to use
-
-% destIm = double(destIm);
-% sourceIm = double(sourceIm);
+%   OFFSETY: offset to use for source image in vertical direction
+%   OFFSETX: offset to use for source image in horizontal direction
 
 % get dimensions of picture
 [height, width, ~] = size(destIm);
@@ -54,9 +53,9 @@ for x = 1:width
                     index = indices(y-1,x);
                     A(count,index) = -1;
                 else
-                    b(count,1) = b(count,1) + destIm(y-1,x,1);
-                    b(count,2) = b(count,2) + destIm(y-1,x,2);
-                    b(count,3) = b(count,3) + destIm(y-1,x,3);
+                    b(count,1) = b(count,1) + destIm(y-1+offsetY,x+offsetX,1);
+                    b(count,2) = b(count,2) + destIm(y-1+offsetY,x+offsetX,2);
+                    b(count,3) = b(count,3) + destIm(y-1+offsetY,x+offsetX,3);
                 end
             end
             
@@ -65,9 +64,9 @@ for x = 1:width
                     index = indices(y,x-1);
                     A(count,index) = -1;
                 else
-                    b(count,1) = b(count,1) + destIm(y,x-1,1);
-                    b(count,2) = b(count,2) + destIm(y,x-1,2);
-                    b(count,3) = b(count,3) + destIm(y,x-1,3);
+                    b(count,1) = b(count,1) + destIm(y+offsetY,x-1+offsetX,1);
+                    b(count,2) = b(count,2) + destIm(y+offsetY,x-1+offsetX,2);
+                    b(count,3) = b(count,3) + destIm(y+offsetY,x-1+offsetX,3);
                 end
             end
             
@@ -76,9 +75,9 @@ for x = 1:width
                     index = indices(y+1,x);
                     A(count,index) = -1;
                 else
-                    b(count,1) = b(count,1) + destIm(y+1,x,1);
-                    b(count,2) = b(count,2) + destIm(y+1,x,2);
-                    b(count,3) = b(count,3) + destIm(y+1,x,3);
+                    b(count,1) = b(count,1) + destIm(y+1+offsetY,x+offsetX,1);
+                    b(count,2) = b(count,2) + destIm(y+1+offsetY,x+offsetX,2);
+                    b(count,3) = b(count,3) + destIm(y+1+offsetY,x+offsetX,3);
                 end
             end
             
@@ -87,9 +86,9 @@ for x = 1:width
                     index = indices(y,x+1);
                     A(count,index) = -1;
                 else
-                    b(count,1) = b(count,1) + destIm(y,x+1,1);
-                    b(count,2) = b(count,2) + destIm(y,x+1,2);
-                    b(count,3) = b(count,3) + destIm(y,x+1,3);
+                    b(count,1) = b(count,1) + destIm(y+offsetY,x+1+offsetX,1);
+                    b(count,2) = b(count,2) + destIm(y+offsetY,x+1+offsetX,2);
+                    b(count,3) = b(count,3) + destIm(y+offsetY,x+1+offsetX,3);
                 end
             end
             
@@ -103,7 +102,7 @@ outputIm = destIm;
 for channel = 1:3
     points = A\b(:,channel);
     for k = 1:num_pixels
-        outputIm(Y(k),X(k),channel) = points(k);
+        outputIm(Y(k)+offsetY,X(k)+offsetX,channel) = points(k);
     end
 end
 
