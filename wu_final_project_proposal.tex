@@ -1,0 +1,40 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}    
+\usepackage{moreverb}   
+\usepackage{fancyhdr}
+\geometry{letterpaper}
+\usepackage{algorithmic}             
+\usepackage{algorithm}
+\usepackage{array}     
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{fullpage}	
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathabx}
+\usepackage{float}
+\usepackage{bm}	
+\graphicspath{ {data/}  {data/PhotometricStereo/} }
+\usepackage{url}
+
+
+\begin{document}
+
+\title{CS 283 Final Project Proposal - Poisson Image Editing}
+\date{Fall 2014}
+\author{George Wu}
+
+\maketitle
+
+\section{Motivation}
+As an enthusiastic photographer, I've had to use Adobe Photoshop to edit my pictures. One of the tools that I find especially useful is the healing brush, and so I want to explore how one can use Poisson Image Editing to perform such seamless manipulations. 
+
+\section{Goal}
+The goal of this project will be to implement various features that fall under Poisson Image Editing. Some of these features include Concealment, Insertion, Feature Exchange, and other things mentioned in this paper: \url{http://www.cs.jhu.edu/~misha/Fall07/Papers/Perez03.pdf}. An ideal scenario would be to have an interface like Adobe Photoshop's and be able to perform operations such as healing and cloning on images.
+
+\section{Methods}
+I do not have a clear idea of the implementation details of this project and would appreciate any insight or advice for what to use. I imagine I would be using either Python or Matlab and would create an interface for the user to play around with. I would then implement the ideas stated in the paper and hopefully come up with a program that would perform the features listed in my goals.
+
+\section{Plan for Evaluation}
+I plan to have some examples handy to test my algorithm and make sure things behave as they should. I will also apply the algorithm to my own examples and will explore why certain examples perform better than others. I will also test certain features against their counterparts in Photoshop to compare the performance and see where my algorithm performs better or worse than Photoshop's.
+
+\end{document}
