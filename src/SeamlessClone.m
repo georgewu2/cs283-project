@@ -9,8 +9,8 @@ function outputIm = SeamlessClone(destIm,sourceIm,imMask,offsetY,offsetX)
 %   OFFSETY: offset to use for source image in vertical direction
 %   OFFSETX: offset to use for source image in horizontal direction
 
-% get dimensions of picture
-[height, width, ~] = size(destIm);
+% get dimensions of source image
+[height, width, ~] = size(sourceIm);
 
 % number of valid neighbors
 N = imfilter(ones(height,width),[0 1 0; 1 0 1; 0 1 0]);
@@ -27,6 +27,7 @@ for i = 1:num_pixels
    count = count + 1;
 end
 
+% calculate laplacian at each point in source image
 laplacian = [0 -1 0; -1 4 -1; 0 -1 0];
 l1 = conv2(double(sourceIm(:,:,1)), laplacian, 'same');
 l2 = conv2(double(sourceIm(:,:,2)), laplacian, 'same');
@@ -41,13 +42,19 @@ b = zeros(num_pixels,3);
 
 % keep track of amount of pixels added so far
 count = 0;
+
+%% Constructs the system of linear equations
+% iterate over each pixel in the image
 for x = 1:width
     for y = 1:height
+        
+        % only add points that are in mask
         if imMask(y,x) == 1
             count = count + 1;
             A(count,count) = N(y,x);
             
             % take care of neighbors
+            % top boundary
             if y ~= 1
                 if imMask(y-1,x) == 1
                     index = indices(y-1,x);
@@ -59,6 +66,7 @@ for x = 1:width
                 end
             end
             
+            % left boundary
             if x ~= 1
                 if imMask(y,x-1) == 1
                     index = indices(y,x-1);
@@ -70,6 +78,7 @@ for x = 1:width
                 end
             end
             
+            % bottom boundary
             if y ~= height
                 if imMask(y+1,x) == 1
                     index = indices(y+1,x);
@@ -81,6 +90,7 @@ for x = 1:width
                 end
             end
             
+            % right boundary
             if x ~= 1
                 if imMask(y,x+1) == 1
                     index = indices(y,x+1);
@@ -98,8 +108,11 @@ for x = 1:width
         end
     end
 end
+
+%% Determines new points and fills in image.
 outputIm = destIm;
 for channel = 1:3
+    % TODO: use Gauss Seidel instead of mldivide
     points = A\b(:,channel);
     for k = 1:num_pixels
         outputIm(Y(k)+offsetY,X(k)+offsetX,channel) = points(k);
