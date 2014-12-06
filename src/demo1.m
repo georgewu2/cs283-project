@@ -19,9 +19,15 @@ pastedIm(y1:y2,x1:x2,:) = sourceIm(y1:y2,x1:x2,:);
 clonedIm = SeamlessClone(destIm,sourceIm,imMask,offsetY,offsetX);
 
 figure;
-subplot(2,1,1);
+subplot(2,2,1);
+imshow(destIm)
+title('Destination Image');
+subplot(2,2,2);
+imshow(sourceIm);
+title('Source Image');
+subplot(2,2,3);
 imshow(pastedIm);
 title('Direct pasting');
-subplot(2,1,2);
+subplot(2,2,4);
 imshow(clonedIm);
 title('Poisson seamless cloning');
