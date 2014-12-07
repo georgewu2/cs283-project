@@ -32,6 +32,9 @@ laplacian = [0 -1 0; -1 4 -1; 0 -1 0];
 l1 = conv2(double(sourceIm(:,:,1)), laplacian, 'same');
 l2 = conv2(double(sourceIm(:,:,2)), laplacian, 'same');
 l3 = conv2(double(sourceIm(:,:,3)), laplacian, 'same');
+d1 = double(destIm(:,:,1));
+d2 = double(destIm(:,:,2));
+d3 = double(destIm(:,:,3));
 
 % In each row of the matrix, we will have 5 elements of fewer, so we use a
 % sparse matrix to save space
@@ -60,9 +63,9 @@ for x = 1:width
                     index = indices(y-1,x);
                     A(count,index) = -1;
                 else
-                    b(count,1) = b(count,1) + destIm(y-1+offsetY,x+offsetX,1);
-                    b(count,2) = b(count,2) + destIm(y-1+offsetY,x+offsetX,2);
-                    b(count,3) = b(count,3) + destIm(y-1+offsetY,x+offsetX,3);
+                    b(count,1) = b(count,1) + d1(y-1+offsetY,x+offsetX);
+                    b(count,2) = b(count,2) + d2(y-1+offsetY,x+offsetX);
+                    b(count,3) = b(count,3) + d3(y-1+offsetY,x+offsetX);
                 end
             end
             
@@ -72,9 +75,9 @@ for x = 1:width
                     index = indices(y,x-1);
                     A(count,index) = -1;
                 else
-                    b(count,1) = b(count,1) + destIm(y+offsetY,x-1+offsetX,1);
-                    b(count,2) = b(count,2) + destIm(y+offsetY,x-1+offsetX,2);
-                    b(count,3) = b(count,3) + destIm(y+offsetY,x-1+offsetX,3);
+                    b(count,1) = b(count,1) + d1(y+offsetY,x-1+offsetX);
+                    b(count,2) = b(count,2) + d2(y+offsetY,x-1+offsetX);
+                    b(count,3) = b(count,3) + d3(y+offsetY,x-1+offsetX);
                 end
             end
             
@@ -84,21 +87,21 @@ for x = 1:width
                     index = indices(y+1,x);
                     A(count,index) = -1;
                 else
-                    b(count,1) = b(count,1) + destIm(y+1+offsetY,x+offsetX,1);
-                    b(count,2) = b(count,2) + destIm(y+1+offsetY,x+offsetX,2);
-                    b(count,3) = b(count,3) + destIm(y+1+offsetY,x+offsetX,3);
+                    b(count,1) = b(count,1) + d1(y+1+offsetY,x+offsetX);
+                    b(count,2) = b(count,2) + d2(y+1+offsetY,x+offsetX);
+                    b(count,3) = b(count,3) + d3(y+1+offsetY,x+offsetX);
                 end
             end
             
             % right boundary
-            if x ~= 1
+            if x ~= width
                 if imMask(y,x+1) == 1
                     index = indices(y,x+1);
                     A(count,index) = -1;
                 else
-                    b(count,1) = b(count,1) + destIm(y+offsetY,x+1+offsetX,1);
-                    b(count,2) = b(count,2) + destIm(y+offsetY,x+1+offsetX,2);
-                    b(count,3) = b(count,3) + destIm(y+offsetY,x+1+offsetX,3);
+                    b(count,1) = b(count,1) + d1(y+offsetY,x+1+offsetX);
+                    b(count,2) = b(count,2) + d2(y+offsetY,x+1+offsetX);
+                    b(count,3) = b(count,3) + d3(y+offsetY,x+1+offsetX);
                 end
             end
             
@@ -110,7 +113,7 @@ for x = 1:width
 end
 
 %% Determines new points and fills in image.
-outputIm = destIm;
+outputIm = double(destIm);
 for channel = 1:3
     % TODO: use Gauss Seidel instead of mldivide
     points = A\b(:,channel);
@@ -118,6 +121,7 @@ for channel = 1:3
         outputIm(Y(k)+offsetY,X(k)+offsetX,channel) = points(k);
     end
 end
+outputIm = uint8(outputIm);
 
 end
 

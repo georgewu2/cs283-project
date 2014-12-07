@@ -172,7 +172,7 @@ for x = 1:width
             end
             
             % right boundary
-            if x ~= 1
+            if x ~= width
                 if imMask(y,x+1) == 1
                     index = indices(y,x+1);
                     A(count,index) = -1;
@@ -212,7 +212,7 @@ for x = 1:width
 end
 
 %% Determines new points and fills in image.
-outputIm = destIm;
+outputIm = double(destIm);
 for channel = 1:3
     % TODO: use Gauss Seidel instead of mldivide
     points = A\b(:,channel);

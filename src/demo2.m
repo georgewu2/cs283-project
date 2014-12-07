@@ -1,6 +1,6 @@
 % George Wu
-% Demo 1
-% Demonstrates seamless cloning
+% Demo 2
+% Demonstrates mixed seamless cloning
 
 sourceIm = imread('../data/cat.jpg');
 destIm = imread('../data/hawaii.jpg');
@@ -28,7 +28,7 @@ imshow(sourceIm);
 title('Source Image');
 subplot(2,2,3);
 imshow(clonedIm);
-title('Poisson seamless cloning');
+title('Poisson Seamless Cloning');
 subplot(2,2,4);
 imshow(mixedClonedIm);
 title('Mixed Poisson Seamless Cloning');
