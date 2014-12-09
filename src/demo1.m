@@ -2,8 +2,8 @@
 % Demo 1
 % Demonstrates seamless cloning
 
-sourceIm = imread('../data/water_front.png');
-destIm = imread('../data/water_back.jpeg');
+sourceIm = imread('../data/water/water_front.png');
+destIm = imread('../data/water/water_back.jpeg');
 imMask = zeros(size(sourceIm,1),size(sourceIm,2));
 y1 = 21;
 y2 = 80;
@@ -18,16 +18,12 @@ pastedIm(y1:y2,x1:x2,:) = sourceIm(y1:y2,x1:x2,:);
 
 clonedIm = SeamlessClone(destIm,sourceIm,imMask,offsetY,offsetX);
 
-figure;
-subplot(2,2,1);
-imshow(destIm)
-title('Destination Image');
-subplot(2,2,2);
-imshow(sourceIm);
-title('Source Image');
-subplot(2,2,3);
 imshow(pastedIm);
 title('Direct pasting');
-subplot(2,2,4);
+
+print -djpeg '../data/water/direct_pasting';
+
 imshow(clonedIm);
-title('Poisson seamless cloning');
+title('Poisson Seamless Cloning');
+
+print -djpeg '../data/water/cloned';

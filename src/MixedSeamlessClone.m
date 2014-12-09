@@ -66,9 +66,9 @@ for x = 1:width
                     index = indices(y-1,x);
                     A(count,index) = -1;
                 else
-                    b(count,1) = b(count,1) + destIm(y-1+offsetY,x+offsetX,1);
-                    b(count,2) = b(count,2) + destIm(y-1+offsetY,x+offsetX,2);
-                    b(count,3) = b(count,3) + destIm(y-1+offsetY,x+offsetX,3);
+                    b(count,1) = b(count,1) + d1(y-1+offsetY,x+offsetX);
+                    b(count,2) = b(count,2) + d2(y-1+offsetY,x+offsetX);
+                    b(count,3) = b(count,3) + d3(y-1+offsetY,x+offsetX);
                 end
                 
                 destGrad1 = d1(y+offsetY,x+offsetX)-d1(y-1+offsetY,x+offsetX);
@@ -103,9 +103,9 @@ for x = 1:width
                     index = indices(y,x-1);
                     A(count,index) = -1;
                 else
-                    b(count,1) = b(count,1) + destIm(y+offsetY,x-1+offsetX,1);
-                    b(count,2) = b(count,2) + destIm(y+offsetY,x-1+offsetX,2);
-                    b(count,3) = b(count,3) + destIm(y+offsetY,x-1+offsetX,3);
+                    b(count,1) = b(count,1) + d1(y+offsetY,x-1+offsetX);
+                    b(count,2) = b(count,2) + d2(y+offsetY,x-1+offsetX);
+                    b(count,3) = b(count,3) + d3(y+offsetY,x-1+offsetX);
                 end
                 
                 destGrad1 = d1(y+offsetY,x+offsetX)-d1(y+offsetY,x-1+offsetX);
@@ -140,9 +140,9 @@ for x = 1:width
                     index = indices(y+1,x);
                     A(count,index) = -1;
                 else
-                    b(count,1) = b(count,1) + destIm(y+1+offsetY,x+offsetX,1);
-                    b(count,2) = b(count,2) + destIm(y+1+offsetY,x+offsetX,2);
-                    b(count,3) = b(count,3) + destIm(y+1+offsetY,x+offsetX,3);
+                    b(count,1) = b(count,1) + d1(y+1+offsetY,x+offsetX);
+                    b(count,2) = b(count,2) + d2(y+1+offsetY,x+offsetX);
+                    b(count,3) = b(count,3) + d3(y+1+offsetY,x+offsetX);
                 end
                 
                 destGrad1 = d1(y+offsetY,x+offsetX)-d1(y+1+offsetY,x+offsetX);
@@ -177,9 +177,9 @@ for x = 1:width
                     index = indices(y,x+1);
                     A(count,index) = -1;
                 else
-                    b(count,1) = b(count,1) + destIm(y+offsetY,x+1+offsetX,1);
-                    b(count,2) = b(count,2) + destIm(y+offsetY,x+1+offsetX,2);
-                    b(count,3) = b(count,3) + destIm(y+offsetY,x+1+offsetX,3);
+                    b(count,1) = b(count,1) + d1(y+offsetY,x+1+offsetX);
+                    b(count,2) = b(count,2) + d2(y+offsetY,x+1+offsetX);
+                    b(count,3) = b(count,3) + d3(y+offsetY,x+1+offsetX);
                 end
                 
                 destGrad1 = d1(y+offsetY,x+offsetX)-d1(y+offsetY,x+1+offsetX);
@@ -220,6 +220,6 @@ for channel = 1:3
         outputIm(Y(k)+offsetY,X(k)+offsetX,channel) = points(k);
     end
 end
-
+outputIm = uint8(outputIm);
 end
 
