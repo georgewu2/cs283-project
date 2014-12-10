@@ -2,8 +2,8 @@
 % Demo 2
 % Demonstrates mixed seamless cloning
 
-sourceIm = imread('../data/mixed2/cat.jpg');
-destIm = imread('../data/mixed2/hawaii.jpg');
+sourceIm = imread('../data/MixedSeamlessCloning/mixed2/cat.jpg');
+destIm = imread('../data/MixedSeamlessCloning/mixed2/hawaii.jpg');
 imMask = zeros(size(sourceIm,1),size(sourceIm,2));
 y1 = 285;
 y2 = 500;
@@ -22,10 +22,10 @@ mixedClonedIm = MixedSeamlessClone(destIm,sourceIm,imMask,offsetY,offsetX);
 imshow(clonedIm);
 title('Poisson Seamless Cloning');
 
-print -djpeg '../data/mixed2/cloned';
+print -djpeg '../data/MixedSeamlessCloning/mixed2/cloned';
 
 imshow(mixedClonedIm);
 title('Mixed Poisson Seamless Cloning');
 
-print -djpeg '../data/mixed2/mixed_cloned';
+print -djpeg '../data/MixedSeamlessCloning/mixed2/mixed_cloned';
 

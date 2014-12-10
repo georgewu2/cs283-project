@@ -2,8 +2,8 @@
 % Demo 1
 % Demonstrates seamless cloning
 
-sourceIm = imread('../data/water/water_front.png');
-destIm = imread('../data/water/water_back.jpeg');
+sourceIm = imread('../data/SeamlessCloning/water/water_front.png');
+destIm = imread('../data/SeamlessCloning/water/water_back.jpeg');
 imMask = zeros(size(sourceIm,1),size(sourceIm,2));
 y1 = 21;
 y2 = 80;
@@ -21,9 +21,9 @@ clonedIm = SeamlessClone(destIm,sourceIm,imMask,offsetY,offsetX);
 imshow(pastedIm);
 title('Direct pasting');
 
-print -djpeg '../data/water/direct_pasting';
+print -djpeg '../data/SeamlessCloning/water/direct_pasting';
 
 imshow(clonedIm);
 title('Poisson Seamless Cloning');
 
-print -djpeg '../data/water/cloned';
+print -djpeg '../data/SeamlessCloning/water/cloned';

@@ -16,10 +16,32 @@
 \providecommand\HyField@AuxAddToFields[1]{}
 \citation{photoshop}
 \citation{lightroom}
-\bibcite{lightroom}{1}
-\bibcite{photoshop}{2}
+\citation{photoshop}
+\citation{poisson-paper}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Methods}{1}{section.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{1}{section.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{1}{section.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}References}{1}{section.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Discrete Poisson Solver}{1}{subsection.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Seamless Cloning}{2}{subsection.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Mixed Seamless Cloning}{2}{subsection.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Texture Flattening}{2}{subsection.2.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{3}{section.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Seamless Cloning}{3}{subsection.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Top left: Our destination or background image. Top right: Our source image. Bottom left: Image after directly pasting the source onto the destination. Bottom right: Image after applying Poisson Seamless Cloning. Seamless cloning achieves smoothness at the borders that regular image editing cannot match. At the same time, the color of the pool tube is more blue compared to the color in the original image.}}{3}{figure.1}}
+\newlabel{water}{{1}{3}{Top left: Our destination or background image. Top right: Our source image. Bottom left: Image after directly pasting the source onto the destination. Bottom right: Image after applying Poisson Seamless Cloning. Seamless cloning achieves smoothness at the borders that regular image editing cannot match. At the same time, the color of the pool tube is more blue compared to the color in the original image}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Top left: Our source image. Top right: Our destination or background image. Bottom: Image after applying Poisson Seamless Cloning. We notice that the seamless cloning adds a very slight halo around aircraft, probably due to the mask being larger than the actual aircraft.}}{4}{figure.2}}
+\newlabel{f16}{{2}{4}{Top left: Our source image. Top right: Our destination or background image. Bottom: Image after applying Poisson Seamless Cloning. We notice that the seamless cloning adds a very slight halo around aircraft, probably due to the mask being larger than the actual aircraft}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Mixed Seamless Cloning}{4}{subsection.3.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Left: Our source image. Second from left: Our destination or background image. Second from right: Image after applying Poisson Seamless Cloning. Right: Image after applying Mixed Seamless Cloning. In this case, the source image is mostly hollow and produces an undesirable blur in the final image, which is taken out in the rightmost image.}}{5}{figure.3}}
+\newlabel{cat-island}{{3}{5}{Left: Our source image. Second from left: Our destination or background image. Second from right: Image after applying Poisson Seamless Cloning. Right: Image after applying Mixed Seamless Cloning. In this case, the source image is mostly hollow and produces an undesirable blur in the final image, which is taken out in the rightmost image}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Left: Our source image. Second from left: Our destination or background image. Second from right: Image after applying Poisson Seamless Cloning. Right: Image after applying mixed seamless cloning. Here we see that the original cloning is better than the mixed cloning, mostly because we do not want to preserve the details of the underlying faces.}}{5}{figure.4}}
+\newlabel{siblings}{{4}{5}{Left: Our source image. Second from left: Our destination or background image. Second from right: Image after applying Poisson Seamless Cloning. Right: Image after applying mixed seamless cloning. Here we see that the original cloning is better than the mixed cloning, mostly because we do not want to preserve the details of the underlying faces}{figure.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Texture Flattening}{6}{subsection.3.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Left: Original image. Right: Flattened image. Only the most significant edges are left visible, and the rest of the face has a flat structure.}}{6}{figure.5}}
+\newlabel{child}{{5}{6}{Left: Original image. Right: Flattened image. Only the most significant edges are left visible, and the rest of the face has a flat structure}{figure.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Left: Original image. Right: Flattened image. The food in the center has a much flatter aspect, especially the broccoli and seaweed strips. The food also has lost much of its saturation.}}{6}{figure.6}}
+\newlabel{child}{{6}{6}{Left: Original image. Right: Flattened image. The food in the center has a much flatter aspect, especially the broccoli and seaweed strips. The food also has lost much of its saturation}{figure.6}{}}
+\bibcite{lightroom}{1}
+\bibcite{photoshop}{2}
+\bibcite{matlab}{3}
+\bibcite{poisson-paper}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusion}{7}{section.4}}
