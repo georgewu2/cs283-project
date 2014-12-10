@@ -7,4 +7,12 @@ The goal of this project is to implement some features under the umbrella of Poi
 2. Seamless Cloning with mixed gradients
 3. Texture Flattening
 
+Dependencies
+=============
 
+* MATLAB
+
+How to Run the Code
+=============
+
+Navigate to the `src` directory in MATLAB and run the demo files. The results are already located in the corresponding folders in the data folder. 
